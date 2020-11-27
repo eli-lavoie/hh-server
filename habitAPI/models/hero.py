@@ -28,10 +28,10 @@ class Hero(models.Model):
   tutorial_completed = models.BooleanField(default=False)
 
   #Title selector, by default accounts have unlocked no titles.
-  title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
+  title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True, default=None)
 
   #Profile Picture url, by default no picture is chosen
-  profile_picture_url = models.CharField(default=None, max_length=100)
+  profile_picture_url = models.CharField(default=None, max_length=100, null=True)
 
   #Credits value, by default a user does not have any credits
   credits_owned = models.IntegerField(default=0)
