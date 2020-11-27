@@ -1,6 +1,10 @@
+#TODO: Add theme fkey after creating theme model
+
+
 from django.db import models
 from django.db.models import F
 from django.contrib.auth.models import User
+from .title import Title
 
 class Hero(models.Model):
   #Link to a user created by registering on website
@@ -24,10 +28,10 @@ class Hero(models.Model):
   tutorial_completed = models.BooleanField(default=False)
 
   #Title selector, by default accounts have unlocked no titles.
-  title = models.CharField(default=None)
+  title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
 
   #Profile Picture url, by default no picture is chosen
-  profile_picture_url = models.CharField(default=None)
+  profile_picture_url = models.CharField(default=None, max_length=100)
 
   #Credits value, by default a user does not have any credits
   credits_owned = models.IntegerField(default=0)

@@ -4,7 +4,7 @@ from django.db.models import F
 class Stat(models.Model):
 
   #The name of the stat
-  stat_name = models.CharField()
+  stat_name = models.CharField(max_length=9)
 
   #The required experience to achieve next level in the stat.
   level_1_exp = models.IntegerField(default=0)

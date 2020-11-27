@@ -8,10 +8,10 @@ class Habit(models.Model):
   stat = models.ForeignKey(Stat, on_delete=models.CASCADE)
 
   #The name of the stat
-  name = models.CharField()
+  name = models.CharField(max_length=25)
 
   #The creator of the habit
-  created_by = models.ForeignKey(Hero)
+  created_by = models.ForeignKey(Hero, on_delete=models.CASCADE)
   
 
   class Meta:
