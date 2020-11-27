@@ -1,6 +1,3 @@
-#TODO: Create hero serializer
-#TODO: Create heroes viewset
-
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -14,7 +11,7 @@ from django.contrib.auth.models import User
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = User,
+        model = User
         url = serializers.HyperlinkedIdentityField(
             view_name="user",
             lookup_field="id"
@@ -60,15 +57,15 @@ class HeroSerializer(serializers.HyperlinkedModelSerializer):
             "prestige_exp"
         )
 
-#ANCHOR: Hero viewset
-class Hero(ViewSet):
+#ANCHOR: Heroes viewset
+class Heroes(ViewSet):
     def retrieve(self, request, pk=None):
 
         try:
             hero = Hero.objects.get(pk=pk)
 
             serializer = HeroSerializer(hero, context={'request': request})
-            return Reponse(serializer.data)
+            return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
 

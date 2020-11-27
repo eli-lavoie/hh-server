@@ -9,7 +9,7 @@ from habitAPI.models import Hero
 
 #ANCHOR: Login Function
 @csrf_exempt
-def login_user(request):
+def login(request):
     '''Handles user authentication
 
     Method arguments:
@@ -48,8 +48,7 @@ def register(request):
         request -- HTTP Request
     '''
 
-    req_body = json.dumps(request.body.decode())
-
+    req_body = json.loads(request.body.decode())
     #Django function to create a new user object
     new_user = User.objects.create_user(
         username=req_body['username'],
@@ -58,7 +57,7 @@ def register(request):
     )
 
     #Creates new hero instance with user foreignkey linked to new_user, all other values set to default model vals
-    new_hero = Hero.object.create(
+    new_hero = Hero.objects.create(
         user=new_user
     )
 
